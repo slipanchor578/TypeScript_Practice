@@ -61,6 +61,30 @@ class LinkedList2<T extends Object>
         lastNode!.nextNode = node;
     }
 
+    insertAfter(index: number, value: T): void
+    {
+        if(this.#firstNode === null)
+        {
+            return
+        }
+        else if(index < -1) return;
+
+        let check = 0;
+
+        let prevNode = this.#firstNode;
+
+        for(; (prevNode.nextNode !== null) && check < index; ++check)
+        {
+            prevNode = prevNode.nextNode;
+        }
+
+        const newNode = new ChildNode2(value);
+
+        newNode.nextNode = prevNode.nextNode;
+
+        prevNode.nextNode = newNode;
+    }
+
     toString(): string
     {
         if(this.#firstNode === null)
@@ -81,6 +105,29 @@ class LinkedList2<T extends Object>
         }
 
         return str;
+    }
+
+    getLength(): number
+    {
+        let count = 0;
+
+        if(this.#firstNode === null)
+        {
+            return count;
+        }
+
+        ++count;
+
+        let node = this.#firstNode;
+
+        while(node.nextNode !== null)
+        {
+            ++count;
+
+            node = node.nextNode;
+        }
+
+        return count;
     }
 }
 
