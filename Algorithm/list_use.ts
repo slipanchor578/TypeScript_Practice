@@ -1,38 +1,43 @@
-import {LinkedList} from "./list";
+import { LinkedList } from "./list";
 
+// 単方向リストを作成
 const list = new LinkedList();
 
-console.log(list.getLastNode()); // 1つも子ノードを持っていないのでnullを返す
+// 子ノードを1つも持っていないのでNull
+console.log(list.getFirstNode() === null);
 
-list.add(0); // value = 0 を持つ子ノードを1つ足す。firstNodeの値になる
+for(let i = 1; i < 11; ++i)
+{
+    // 子ノードを作成しては繋げていく
+    list.add(i);
+}
 
-console.log(list.getLastNode()); // ChildNode { value: 0, nextNode: null }
+// ひたすらnode.nextNodeを辿って行って、最後の子ノードを返す
+// 当然末尾なのでnextNode = null になっている
+console.log(list.getLastNode()); // ChildNode { value: 10, nextNode: null }
 
-list.add(1);
-/*
-    value = 1 を持つ子ノードを1つ足す
-    先程のadd(0)と違って、firstNode(value = 0)のnextNodeプロパティの値にセットされる
-*/
+console.log(list.toString()); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-console.log(list.getLastNode()); // ChildNode { value: 1, nextNode: null }
+console.log(list.getLength()); // 10
 
-list.add(2);
+// index = 0 の位置の後ろに10000を持つ子ノードを挿入
+list.insertAfter(0, 10000);
 
-// nextNodeプロパティを辿って行って、常に最後方のNodeを返す
-console.log(list.getLastNode()); // ChildNode { value: 2, nextNode: null }
+console.log(list.toString()); // 1, 10000, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-// 子ノードを辿って行って、ノードが持つ値を文字列にして返す
-console.log(list.toString()); // 0, 1, 2
+console.log(list.getLength()); // 11。 1つ子ノードを追加したので増えている
 
-// LinkedListとしては先頭のfirstNodeしか持たず、そのNodeのnextNodeプロパティに
-// 次のNodeがぶら下がっているのがリンクリストなどと言われる所以
 console.log(list.getFirstNode());
+
 /*
+    リストの面白い所は「list」単独ではfirstNodeプロパティしか持っていない所
+    ただし子ノードのnextNodeを辿っていくと子ノードが大量にぶら下がっている形になっている
+
     ChildNode {
-        value: 0,
+        value: 1,
         nextNode: ChildNode {
-            value: 1,
-            nextNode: ChildNode { value: 2, nextNode: null }
+            value: 10000,
+            nextNode: ChildNode { value: 2, nextNode: [ChildNode] }
         }
     }
 */
