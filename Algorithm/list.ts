@@ -76,6 +76,22 @@ class LinkedList
         lastNode!.nextNode = node;
     }
 
+    // 先頭に子ノードを挿入するメソッド
+    addFirst(value: number): void
+    {
+        // 新しい子ノードを作る
+        const node = new ChildNode(value);
+
+        // 新しい子ノードの次のノードに、現在LinkedListが持っているfirstNodeを繋ぐ
+        node.nextNode = this.#firstNode;
+
+        // 新しく作った子ノードをfirstNodeにする
+        this.#firstNode = node;
+
+        // 要素の入れ替えで先頭にデータを持ってくるのではなく
+        // 参照先を変えて先頭に持ってくるのが、普通の配列での操作との違い
+    }
+
     // 任意のindexの後ろに値を挿入するメソッド
     insertAfter(index: number, value: number): void
     {
