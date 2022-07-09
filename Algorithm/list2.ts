@@ -61,6 +61,15 @@ class LinkedList2<T extends Object>
         lastNode!.nextNode = node;
     }
 
+    addFirst(value: T): void
+    {
+        const node = new ChildNode2(value);
+
+        node.nextNode = this.#firstNode;
+
+        this.#firstNode = node;
+    }
+
     insertAfter(index: number, value: T): void
     {
         if(this.#firstNode === null)
