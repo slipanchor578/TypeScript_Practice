@@ -1,5 +1,10 @@
 function gcd1(num1: number, num2: number): number
 {
+	if(num1 == 0 || num2 == 0)
+	{
+		return Math.max(num1, num2);
+	}
+	
 	// 小さい方で割っていく
 	let diviser = Math.min(num1, num2);
 
