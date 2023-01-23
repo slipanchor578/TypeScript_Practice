@@ -164,7 +164,7 @@ console.log(list.Length); // 11
 	list.add(3)
 	list.firstNode = {value: 1, nextNode: {value:2, nextNode: {value: 3, nextNode: null}}}
 
-	こんな感じでどんどん連結していく
+	こんな感じでどんどん連結する
 	配列のようにメモリ上に一列で並んでいるわけではないのでランダムアクセスができない
 	が、先頭に新しい要素を突っ込むことにかけては速い
 */
