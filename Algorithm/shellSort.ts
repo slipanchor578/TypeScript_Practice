@@ -18,7 +18,7 @@ function getRandomIntInclusive(min: number, max: number)
  */
 function keikazikan(endtime: number, starttime: number)
 {
-	const result = (endtime - starttime).toPrecision(4);
+	const result = (endtime - starttime).toFixed(4);
 	return result;
 }
 
